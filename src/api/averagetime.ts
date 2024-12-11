@@ -21,6 +21,9 @@ export const GET = async (req: Request, res: Response) => {
         console.log(count);
         let total = 0;
 
+        let maxTime: number = Number.NEGATIVE_INFINITY;
+        let scoreOfLongestTimeTakenIssue: string = "";
+
         highSolvedData.map((issue) => {
             // Converting string date string into Javascript Date to calculate the time difference
             const createdInMillis = new Date(issue.created);
@@ -30,7 +33,10 @@ export const GET = async (req: Request, res: Response) => {
                 (Number(updatedInMillis) - Number(createdInMillis)) /
                 (1000 * 60 * 60);
 
-            console.log(`Diff: ${timeDifferenceInHours}`);
+            if (timeDifferenceInHours > maxTime) {
+                maxTime = timeDifferenceInHours;
+                scoreOfLongestTimeTakenIssue = issue.satisfaction_rating.score;
+            }
 
             total += timeDifferenceInHours;
         });
@@ -38,6 +44,7 @@ export const GET = async (req: Request, res: Response) => {
         // Sends back the average time taken in hours rounded to 2 decimal points.
         res.send({
             averageTime: (total / count).toFixed(2),
+            longestTimeTakenIssueRating: scoreOfLongestTimeTakenIssue,
         });
     } catch (e: unknown) {
         res.status(500);
