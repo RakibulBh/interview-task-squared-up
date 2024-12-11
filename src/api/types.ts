@@ -1,4 +1,4 @@
-export interface SampleData {
+export interface ServiceDeskData {
     results: {
         id: number;
         created: string;
@@ -19,8 +19,8 @@ export interface SampleData {
                 from: {
                     name: string;
                     email: string;
-                }
-            }
+                };
+            };
         };
         ticket_form_id: string;
     }[];
