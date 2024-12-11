@@ -6,6 +6,7 @@ const DATA_URL =
     "https://sampleapi.squaredup.com/integrations/v1/service-desk?datapoints=500";
 
 export const GET = async (req: Request, res: Response) => {
+    // Using try to keep dangerous code in a safety net, this keeps the flow of application and is better for the developers when debugging and users.
     try {
         const { data } = await axios.get<ServiceDeskData>(DATA_URL);
         const count = data.results.length;
