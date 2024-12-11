@@ -8,7 +8,7 @@ const DATA_URL =
 export const GET = async (req: Request, res: Response) => {
     try {
         const { data } = await axios.get<ServiceDeskData>(DATA_URL);
-        const count = data.results.length;
+        const count = data.count;
         const problems = data.results.filter(
             (data) => data.type.toLowerCase() == "problem"
         );
