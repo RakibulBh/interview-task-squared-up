@@ -14,7 +14,7 @@ function Data() {
 
         const fetchData = async () => {
             const { data: allData } = await axios.get<ServiceDeskData>(
-                "/api/data"
+                "/api/priorities"
             );
 
             if (mounted) {

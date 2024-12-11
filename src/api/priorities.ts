@@ -9,20 +9,20 @@ export const GET = async (req: Request, res: Response) => {
     try {
         const { data } = await axios.get<ServiceDeskData>(DATA_URL);
         const count = data.results.length;
-        const problems = data.results.filter(
-            (data) => data.type.toLowerCase() == "problem"
+        const high = data.results.filter(
+            (data) => data.priority.toLowerCase() == "high"
         );
-        const questions = data.results.filter(
-            (data) => data.type.toLowerCase() == "question"
+        const normal = data.results.filter(
+            (data) => data.priority.toLowerCase() == "normal"
         );
-        const issues = data.results.filter(
-            (data) => data.type.toLowerCase() == "task"
+        const low = data.results.filter(
+            (data) => data.priority.toLowerCase() == "low"
         );
 
         res.send({
-            problemsPercentage: Math.round((problems.length / count) * 100),
-            questionsPercentage: Math.round((questions.length / count) * 100),
-            issuesPercentage: Math.round((issues.length / count) * 100),
+            highPercentage: Math.round((high.length / count) * 100),
+            normalPercentage: Math.round((normal.length / count) * 100),
+            lowPercentage: Math.round((low.length / count) * 100),
         });
     } catch (e: unknown) {
         res.status(500);
