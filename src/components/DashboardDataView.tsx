@@ -18,12 +18,6 @@ function Row({
         let filteredData = [];
         switch (category) {
             case "Priority":
-                console.log(
-                    "Looking through ticket with category ",
-                    category,
-                    " and the value being ",
-                    name
-                );
                 filteredData = tickets.filter(
                     (ticket) => ticket.priority === name
                 );
@@ -48,7 +42,7 @@ function Row({
     return (
         <div className="w-full flex gap-8 text-gray-400 justify-between items-center">
             <h1 className="font-bold capitalize">{name}:</h1>
-            <div className="py-[2px] px-4 rounded-lg bg-gray-100">
+            <div className="py-[2px] px-4 rounded-lg border-2 border-gray-100">
                 <p>{length ? length : "N/A"}</p>
             </div>
         </div>

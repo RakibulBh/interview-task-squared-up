@@ -1,5 +1,6 @@
 import React from "react";
 
+// Re-usable button component to clean up styles.
 const Button = ({
     children,
     onClick,

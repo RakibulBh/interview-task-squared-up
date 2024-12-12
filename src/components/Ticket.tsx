@@ -1,9 +1,16 @@
 import { DataObject } from "api/types";
 import { Info, Star, TriangleAlert } from "lucide-react";
 
+// This is each individual ticket that is rendered
 const Ticket = ({ ticket }: { ticket: DataObject }) => {
     return (
-        <div className="bg-[#2A2836] rounded-lg px-4 py-3 flex justify-between items-center hover:bg-opacity-55 transition-all ease-in-out hover:cursor-pointer hover:scale-[5px] ">
+        <div
+            className={`bg-[#2A2836] rounded-lg px-4 py-3 flex justify-between items-center hover:bg-opacity-55 transition-all ease-in-out hover:cursor-pointer border-2  hover:scale-[5px ${
+                ticket.status === "open" && "border-red-500"
+            } ${ticket.status === "pending" && "border-orange-500}"} ${
+                ticket.status === "solved" && "border-green-500"
+            } `}
+        >
             <div className="flex gap-2 text-white border-b-[1px] border-white">
                 <h1 className="">{ticket.id}.</h1>
                 <p className="">{ticket.organization_id}</p>

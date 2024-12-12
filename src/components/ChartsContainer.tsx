@@ -2,6 +2,7 @@ import React from "react";
 import SectionTitle from "./SectionTitle";
 import Chart, { ChartProps } from "./PieChart";
 
+// The container that holds the chart.
 const ChartsContainer = ({ chartData }: { chartData: ChartProps }) => {
     return (
         <div className="bg-[#151424] p-4 rounded-md min-h-0 flex flex-col">

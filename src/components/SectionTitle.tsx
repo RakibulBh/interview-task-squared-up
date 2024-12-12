@@ -1,5 +1,6 @@
 import React from "react";
 
+// Re usable title component
 const SectionTitle = ({
     children,
     className,

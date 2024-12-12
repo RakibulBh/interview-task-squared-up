@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
 
+// Re useable search bar component
 const SearchBar = ({
     searchTerm,
     setSearchState,

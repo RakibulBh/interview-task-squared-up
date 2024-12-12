@@ -5,6 +5,7 @@ export interface ChartProps {
     data: Record<string, number>;
 }
 
+// This is a piechart used from open sourced component library recharts
 const renderActiveShape = (props: any) => {
     const RADIAN = Math.PI / 180;
     const {

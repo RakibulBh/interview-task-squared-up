@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 
 const queryClient = new QueryClient();
 
+// Wrapper for the main app, handles the overall layout.
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
