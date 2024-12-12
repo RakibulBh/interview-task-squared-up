@@ -1,5 +1,4 @@
-import { Search } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchBar from "./SearchBar";
 
 // Top navigation bar

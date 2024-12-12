@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import Navbar from "./navbar";
 import Content from "./content";
 import Sidebar from "./Sidebar";
+import Navbar from "./navbar";
 
 const queryClient = new QueryClient();
 

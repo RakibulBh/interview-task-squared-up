@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import SectionTitle from "./SectionTitle";
 import axios from "axios";
 import { DataObject, ServiceDeskData } from "api/types";
 import { TicketsContainer } from "./TicketsContainer";
-import Chart from "./PieChart";
 import DataOverview from "./DataOverview";
-import ChartsContainet from "./ChartsContainer";
 import ChartsContainer from "./ChartsContainer";
 
 const Content = () => {
