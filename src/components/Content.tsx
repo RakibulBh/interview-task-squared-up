@@ -9,20 +9,31 @@ import SearchBar from "./SearchBar";
 
 function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
     const [filteredTickets, setFilteredTickets] = useState<DataObject[]>();
-    const [searchTerm, setSearchTerm] = useState<string>();
+    const [searchTerm, setSearchTerm] = useState<string>("");
+
+    useEffect(() => {
+        setFilteredTickets(
+            tickets.filter((ticket) =>
+                ticket.organization_id.includes(searchTerm)
+            )
+        );
+    }, [searchTerm]);
 
     return (
         <div className="bg-[#151424] p-4 rounded-md col-span-2 flex flex-col space-y-9">
             <div className="flex justify-between items-center">
                 <SectionTitle>Issues</SectionTitle>
-                <div className="flex gap-2">
+                <div className="flex gap-4">
                     <Button>Sort</Button>
-                    <SearchBar />
+                    <SearchBar
+                        searchTerm={searchTerm}
+                        setSearchState={setSearchTerm}
+                    />
                 </div>
             </div>
             <div className="flex-1 overflow-y-auto max-h-80 rounded-md flex flex-col gap-2">
-                {tickets &&
-                    tickets.map((ticket) => (
+                {filteredTickets &&
+                    filteredTickets.map((ticket) => (
                         <Ticket key={ticket.id} ticket={ticket} />
                     ))}
             </div>
