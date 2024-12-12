@@ -3,10 +3,10 @@ import { Info, Star, TriangleAlert } from "lucide-react";
 
 const Ticket = ({ ticket }: { ticket: DataObject }) => {
     return (
-        <div className="bg-white rounded-lg px-4 py-3 flex justify-between items-center">
-            <div className="flex gap-2">
-                <h1 className="text-gray-800">{ticket.id}.</h1>
-                <p>{ticket.organization_id}</p>
+        <div className="bg-[#2A2836] rounded-lg px-4 py-3 flex justify-between items-center hover:bg-opacity-55 transition-all ease-in-out hover:cursor-pointer hover:scale-[5px] ">
+            <div className="flex gap-2 text-white border-b-[1px] border-white">
+                <h1 className="">{ticket.id}.</h1>
+                <p className="">{ticket.organization_id}</p>
             </div>
             <div className="flex w-64 items-center gap-2">
                 <div className="grid grid-cols-3 gap-2">

@@ -9,7 +9,7 @@ const SearchBar = ({
     setSearchState: Dispatch<SetStateAction<string>>;
 }) => {
     return (
-        <div className="rounded-xl bg-gray-100 p-2 gap-2 flex items-center w-64">
+        <div className="rounded-xl bg-[#2A2836] p-2 gap-2 flex items-center w-64 text-white">
             <Search />
             <input
                 placeholder="search"
