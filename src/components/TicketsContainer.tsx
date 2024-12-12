@@ -12,6 +12,7 @@ export function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
         useState<DataObject[]>(tickets);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sorted, setSorted] = useState<boolean>(true);
+    const [filtered, setFiltered] = useState(false);
 
     // Search feature, filters tickets real time depending on the search term.
     useEffect(() => {
@@ -25,16 +26,24 @@ export function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
 
     // Sort function to sort the tickets asc and desc
     const onSort = () => {
-        if (sorted) {
-            const sortedTickets = filteredTickets?.sort(sortAsc);
-            setFilteredTickets(sortedTickets);
-            setSorted(false);
-            return;
-        }
-
-        const sortedTickets = filteredTickets?.sort(sortDesc);
+        const sortedTickets = [...filteredTickets].sort(
+            sorted ? sortAsc : sortDesc
+        );
         setFilteredTickets(sortedTickets);
-        setSorted(true);
+        setSorted(!sorted);
+    };
+
+    // Filters only the tickets that are high priority and are open
+    const filterOpenAndHigh = () => {
+        const newFilteredTickets = !filtered
+            ? tickets.filter(
+                  (ticket) =>
+                      ticket.priority === "high" && ticket.status === "open"
+              )
+            : tickets;
+
+        setFilteredTickets(newFilteredTickets);
+        setFiltered(!filtered);
     };
 
     return (
@@ -42,7 +51,9 @@ export function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
             <div className="flex justify-between items-center">
                 <SectionTitle>Issues</SectionTitle>
                 <div className="flex gap-4">
-                    <Button>Filter</Button>
+                    <Button onClick={filterOpenAndHigh}>
+                        {!filtered ? "Filter" : "Reset filter"}
+                    </Button>
                     <Button onClick={onSort}>
                         {sorted ? <SortAsc /> : <SortDesc />}
                         {sorted ? "Low" : "High"}
