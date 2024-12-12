@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 import { DataObject } from "api/types";
 
@@ -11,36 +11,47 @@ function Row({
     name: string;
     category: string;
 }) {
-    let filteredData: DataObject[] = [];
+    const [length, setLength] = useState(0);
+
+    console.log("Priority: ", category);
 
     useEffect(() => {
+        let filteredData = [];
         switch (category) {
-            case "priority":
+            case "Priority":
+                console.log(
+                    "Looking through ticket with category ",
+                    category,
+                    " and the value being ",
+                    name
+                );
                 filteredData = tickets.filter(
                     (ticket) => ticket.priority === name
                 );
+                console.log(filteredData);
                 break;
-            case "type":
+            case "Type":
                 filteredData = tickets.filter((ticket) => ticket.type === name);
                 break;
-            case "stauts":
+            case "Status":
                 filteredData = tickets.filter(
                     (ticket) => ticket.status === name
                 );
                 break;
-            case "satisfaction":
+            case "Satisfaction":
                 filteredData = tickets.filter(
-                    (ticket) => ticket.status === name
+                    (ticket) => ticket.satisfaction_rating.score === name
                 );
                 break;
         }
-    }, []);
+        setLength(filteredData?.length);
+    }, [tickets, name, category]);
 
     return (
         <div className="w-full flex gap-8 text-gray-400 justify-between items-center">
             <h1 className="font-bold capitalize">{name}:</h1>
             <div className="py-[2px] px-4 rounded-lg bg-gray-100">
-                <p>{filteredData ? filteredData.length : "N/A"}</p>
+                <p>{length ? length : "N/A"}</p>
             </div>
         </div>
     );
