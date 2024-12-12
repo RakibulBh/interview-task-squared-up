@@ -13,8 +13,7 @@ function Row({
 }) {
     const [length, setLength] = useState(0);
 
-    console.log("Priority: ", category);
-
+    // Filters the tickets to get only relevant data
     useEffect(() => {
         let filteredData = [];
         switch (category) {
@@ -28,7 +27,6 @@ function Row({
                 filteredData = tickets.filter(
                     (ticket) => ticket.priority === name
                 );
-                console.log(filteredData);
                 break;
             case "Type":
                 filteredData = tickets.filter((ticket) => ticket.type === name);

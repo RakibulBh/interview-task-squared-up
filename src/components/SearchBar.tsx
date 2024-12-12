@@ -13,6 +13,7 @@ const SearchBar = ({
             <Search />
             <input
                 placeholder="search"
+                value={searchTerm}
                 onChange={(e) => setSearchState(e.target.value)}
                 className="bg-transparent focus:outline-none"
             />

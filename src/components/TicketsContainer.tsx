@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import SectionTitle from "./SectionTitle";
 import Button from "./Button";
 import { sortAsc, sortDesc } from "utils";
+import { SortAsc, SortDesc } from "lucide-react";
 
 export function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
     const [filteredTickets, setFilteredTickets] =
@@ -12,6 +13,7 @@ export function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sorted, setSorted] = useState<boolean>(true);
 
+    // Search feature, filters tickets real time depending on the search term.
     useEffect(() => {
         const filtered = tickets.filter((ticket) =>
             ticket.organization_id
@@ -21,16 +23,18 @@ export function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
         setFilteredTickets(filtered);
     }, [searchTerm, tickets]);
 
+    // Sort function to sort the tickets asc and desc
     const onSort = () => {
         if (sorted) {
             const sortedTickets = filteredTickets?.sort(sortAsc);
-
-            setSorted(!sorted);
+            setFilteredTickets(sortedTickets);
+            setSorted(false);
             return;
         }
 
-        filteredTickets?.sort(sortDesc);
-        setSorted(!sorted);
+        const sortedTickets = filteredTickets?.sort(sortDesc);
+        setFilteredTickets(sortedTickets);
+        setSorted(true);
     };
 
     return (
@@ -38,7 +42,11 @@ export function TicketsContainer({ tickets }: { tickets: DataObject[] }) {
             <div className="flex justify-between items-center">
                 <SectionTitle>Issues</SectionTitle>
                 <div className="flex gap-4">
-                    <Button onClick={onSort}>Sort by priority</Button>
+                    <Button>Filter</Button>
+                    <Button onClick={onSort}>
+                        {sorted ? <SortAsc /> : <SortDesc />}
+                        {sorted ? "Low" : "High"}
+                    </Button>
                     <SearchBar
                         searchTerm={searchTerm}
                         setSearchState={setSearchTerm}
