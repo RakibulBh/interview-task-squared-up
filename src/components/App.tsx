@@ -1,17 +1,22 @@
-import { QueryClient, QueryClientProvider } from "react-query"
-import Data from "./Data"
+import { QueryClient, QueryClientProvider } from "react-query";
+import Navbar from "./navbar";
+import Content from "./content";
+import Sidebar from "./Sidebar";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <div className='p-4'>
-                <h1 className='mb-4 text-3xl'>Data Display</h1>
-                <Data />
-            </div>
+            <main className="bg-[#070615] h-screen flex">
+                <Sidebar />
+                <div className="flex-1 flex flex-col bg-[#070615]">
+                    <Navbar />
+                    <Content />
+                </div>
+            </main>
         </QueryClientProvider>
-    )
+    );
 }
 
-export default App
+export default App;
